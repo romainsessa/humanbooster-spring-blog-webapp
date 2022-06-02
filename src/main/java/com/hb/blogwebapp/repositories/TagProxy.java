@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
@@ -14,10 +15,14 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
+import com.hb.blogwebapp.configuration.ApiProperties;
 import com.hb.blogwebapp.dto.TagDTO;
 
 @Component
 public class TagProxy {
+	
+	@Autowired
+	private ApiProperties props;
 
 	Logger logger = LoggerFactory.getLogger(TagProxy.class);
 
@@ -25,7 +30,7 @@ public class TagProxy {
 		try {
 			RestTemplate template = new RestTemplate();
 
-			ResponseEntity<List<TagDTO>> response = template.exchange("http://localhost:9001/api/tag", HttpMethod.GET,
+			ResponseEntity<List<TagDTO>> response = template.exchange(props.getUrl() + "/api/tag", HttpMethod.GET,
 					null, new ParameterizedTypeReference<List<TagDTO>>() {
 					});
 			return response.getBody();
@@ -41,7 +46,7 @@ public class TagProxy {
 		try {
 			RestTemplate template = new RestTemplate();
 
-			ResponseEntity<TagDTO> response = template.exchange("http://localhost:9001/api/tag/" + id, HttpMethod.GET,
+			ResponseEntity<TagDTO> response = template.exchange(props.getUrl() + "/api/tag/" + id, HttpMethod.GET,
 					null, TagDTO.class);
 
 			return response.getBody();
@@ -57,7 +62,7 @@ public class TagProxy {
 		try {
 			RestTemplate template = new RestTemplate();
 			HttpEntity<TagDTO> request = new HttpEntity<TagDTO>(tag);
-			ResponseEntity<TagDTO> response = template.exchange("http://localhost:9001/api/tag/", HttpMethod.POST,
+			ResponseEntity<TagDTO> response = template.exchange(props.getUrl() + "/api/tag/", HttpMethod.POST,
 					request, TagDTO.class);
 			return response.getBody();
 		} catch (HttpClientErrorException exception) {
@@ -70,7 +75,7 @@ public class TagProxy {
 		try {
 			RestTemplate template = new RestTemplate();
 
-			template.exchange("http://localhost:9001/api/tag/" + id, HttpMethod.DELETE, null, Void.class);
+			template.exchange(props.getUrl() + "/api/tag/" + id, HttpMethod.DELETE, null, Void.class);
 
 		} catch (HttpClientErrorException exception) {
 			if (exception.getStatusCode() == HttpStatus.NOT_FOUND) {
