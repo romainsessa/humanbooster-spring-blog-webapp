@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Post Page</title>
+</head>
+<body>
+
+	Id : <span th:text="${post.id}" /><br /> 
+	Title : <span th:text="${post.title}" /><br /> 
+	Created by : <span th:text="${post.details.createdBy}" /><br />
+	Created on : <span th:text="${#dates.format(post.details.createdOn, 'yyyy-MM-dd')}" /><br />
+	Tag list :
+	<ul>
+		<li th:each="tag: ${post.tags}">
+			<span th:text="${tag.name}" /> 
+			<a th:href="@{/post/{postId}/unmap/{tagId}(postId=${post.id},tagId=${tag.id})}">Unmap</a>
+		</li>
+	</ul>
+	Comment list :
+	<ul>
+		<li th:each="comment: ${post.comments}">
+			<span th:text="${comment.review}" /> 
+			<a th:href="@{/comment/{id}/update(id=${comment.id})}">Update</a> 
+			<a th:href="@{/comment/{id}/post/{postId}(id=${comment.id}, postId=${post.id})}">Delete</a>
+		</li>
+	</ul>
+	New comment ?
+	<form method="post" th:action="@{/comment}" th:object="${comment}">
+		Review : <input type="text" th:field="*{review}" /><br /> 
+		<input type="hidden" th:field="*{postId}" />
+		<button type="submit">Create</button>
+	</form>
+</body>
+</html>

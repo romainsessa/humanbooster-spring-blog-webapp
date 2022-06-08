@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Tags Page</title>
+</head>
+<body>
+	<table>
+		<thead>
+			<th>Id</th>
+			<th>Name</th>
+		</thead>
+		<tbody>
+			<tr th:each="tag: ${tags}">
+				<td>
+					<a th:href="@{/tag/{id}(id=${tag.id})}"> 
+						<span th:text="${tag.id}" />
+					</a>
+				</td>
+				<td>
+					<span th:text="${tag.name}" />
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<a href="/tag/new">Créer une nouveau tag</a>
+</body>
+</html>

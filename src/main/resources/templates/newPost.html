@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>New Post form</title>
+</head>
+<body>
+	<form method="post" th:action="@{/post}" th:object="${post}">
+		Title : <input type="text" th:field="*{title}" /><br /> 
+		Created By : <input type="text" th:field="*{details.createdBy}" /><br />
+		<button type="submit">Create</button>
+	</form>
+</body>
+</html>

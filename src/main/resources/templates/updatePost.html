@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Update Post Form</title>
+</head>
+<body>
+	<form method="post" th:action="@{/post}" th:object="${post}">
+		Id : <input type="text" readonly="readonly" th:field="*{id}" /><br />
+		Title : <input type="text" th:field="*{title}" /><br /> 
+		Created By : <input type="text" th:field="*{details.createdBy}" /><br /> 
+		Created	On : <input type="date" readonly="readonly" th:field="*{details.createdOn}" /><br /> 
+		<input type="hidden" th:field="*{details.id}" />
+		<button type="submit">Update</button>
+	</form>
+</body>
+</html>

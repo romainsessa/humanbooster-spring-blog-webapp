@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Map Post and Tag</title>
+</head>
+<body>
+	<form method="post" th:action="@{/post/map}" th:object="${mapPostTag}">
+		<select th:field="*{postId}">
+			<option th:each="post : ${posts}" th:value="${post.id}"
+				th:text="${post.title}">Post</option>
+		</select> 
+		<select th:field="*{tagId}">
+			<option th:each="tag : ${tags}" th:value="${tag.id}"
+				th:text="${tag.name}">Tag</option>
+		</select>
+		<button type="submit">Map</button>
+	</form>
+</body>
+</html>

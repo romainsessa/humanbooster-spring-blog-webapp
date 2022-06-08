@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Update Comment Form</title>
+</head>
+<body>
+	<form method="post" th:action="@{/comment}" th:object="${comment}">
+		Id : <input type="text" readonly="readonly" th:field="*{id}" /><br />
+		Review : <input type="text" th:field="*{review}" /><br /> 
+		<input type="hidden" th:field="*{postId}" />
+		<button type="submit">Update</button>
+	</form>
+</body>
+</html>

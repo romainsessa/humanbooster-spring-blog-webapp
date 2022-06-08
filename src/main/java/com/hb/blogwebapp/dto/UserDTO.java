@@ -1,5 +1,6 @@
 package com.hb.blogwebapp.dto;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class UserDTO {
@@ -8,7 +9,7 @@ public class UserDTO {
 
 	private String password;
 
-	private List<RoleDTO> roles;
+	private List<RoleDTO> roles = new ArrayList<>();
 
 	public String getUsername() {
 		return username;

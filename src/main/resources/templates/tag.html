@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Tag Page</title>
+</head>
+<body>
+	<div th:if="${tag}">
+		<span th:text="${tag.id}" /> 
+		<span th:text="${tag.name}" />
+		<ul>
+			<li th:each="post: ${tag.posts}"><span th:text="${post.title}" /></li>
+		</ul>
+		<a th:href="@{/tag/{id}/update(id=${tag.id})}">Mettre à jour ce	tag</a> 
+		<a th:href="@{/tag/{id}/delete(id=${tag.id})}">Supprimer ce	tag</a>
+	</div>
+	<div th:unless="${tag}">Tag not found !</div>
+</body>
+</html>

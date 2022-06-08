@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Update Tag Form</title>
+</head>
+<body>
+	<form method="post" th:action="@{/tag}" th:object="${tag}">
+		<input type="text" readonly="readonly" th:field="*{id}" /> 
+		<input type="text" th:field="*{name}" />
+		<button type="submit">Update</button>
+	</form>
+</body>
+</html>

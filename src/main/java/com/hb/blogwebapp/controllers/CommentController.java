@@ -11,14 +11,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.hb.blogwebapp.dto.PostCommentDTO;
-import com.hb.blogwebapp.service.ICommentService;
+import com.hb.blogwebapp.service.IPostCommentService;
 
 @Controller
 @RequestMapping(value = "comment")
 public class CommentController {
 
 	@Autowired
-	private ICommentService commentService;
+	private IPostCommentService commentService;
 
 	@PostMapping
 	public ModelAndView save(@ModelAttribute(name = "comment") PostCommentDTO comment) {
